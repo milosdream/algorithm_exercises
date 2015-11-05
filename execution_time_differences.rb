@@ -28,3 +28,15 @@ def largest_sub_sum(array)
 
   max
 end
+
+def fast_largest_subsum(arr)
+  absolute_max = arr[0]
+  sub_max = arr[0]
+
+  1.upto(arr.length-1) do |i|
+    sub_max = [sub_max + arr[i], arr[i]].max
+    absolute_max = [sub_max, absolute_max].max
+  end
+
+  return absolute_max
+end
