@@ -44,29 +44,52 @@ class MinMaxStackQueue < MyStack
   def initialize
     @in_stack = MyStack.new
     @out_stack = MyStack.new
-    @max = []
-    @min = []
   end
 
+  def max
+    unless @out_stack.empty?
+      return @out_stack.max
+    end
+
+    unless @in_stack.empty?
+      return @in_stack.max
+    end
+    nil
+  end
+
+  def min
+    unless @out_stack.empty?
+      return @out_stack.min
+    end
+
+    unless @in_stack.empty?
+      return @in_stack.min
+    end
+    nil
+  end
+
+
   def enq(el)
-    @queue.push(MyStack.new.push(el))
-    @max.push(el) if @max.empty? || el > @max.last
-    @min.push(el) if @min.empty? || el < @min.last
+    until @out_stack.empty?
+      @in_stack.push(@out_stack.pop)
+    end
+
+    @in_stack.push(el)
   end
 
   def deq
-    p "@queue = #{@queue}, @min.first = #{@min.first}, @max.first = #{@max.first}"
-    p "@max = #{@max}, @min = #{@min}"
-    @max.pop if @queue[0][0] == @max.first
-    @min.pop if @queue[0][0] == @min.first
-    @queue.shift.pop
+    until @in_stack.empty?
+      @out_stack.push(@in_stack.pop)
+    end
+
+    @out_stack.pop
   end
 
   def size
-    @queue.count
+    @in_stack.count + @out_stack.count
   end
 
   def empty?
-    @queue.empty?
+    @in_stack.empty? && @out_stack.empty?
   end
 end
