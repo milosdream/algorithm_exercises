@@ -9,7 +9,7 @@ def bad_two_sum(arr, target_sum)
   false
 end
 
-# time complexity == O(N**2)
+# time complexity == O(n**2)
 
 def okay_two_sum(arr, target_sum)
 
@@ -23,7 +23,7 @@ def okay_two_sum(arr, target_sum)
   false
 end
 
-# time complexity = O(n*log(n))
+# time complexity == O(n*log(n))
 
 def good_two_sum(arr, target_sum)
   hash_map = Hash.new
@@ -39,3 +39,5 @@ def good_two_sum(arr, target_sum)
 
   false
 end
+
+#time complexity == On
