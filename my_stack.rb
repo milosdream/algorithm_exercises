@@ -86,7 +86,7 @@ class MinMaxStackQueue < MyStack
   end
 
   def size
-    @in_stack.count + @out_stack.count
+    @in_stack.size + @out_stack.size
   end
 
   def empty?
